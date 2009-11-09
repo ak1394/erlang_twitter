@@ -359,7 +359,7 @@ status_destroy(RootUrl, Login, Password, Args) ->
     case Args of
         [{"id", Id}] ->
             Url = build_url(UrlBase ++ Id ++ ".xml", []),
-            Body = request_url(get, Url, Login, Password, nil),
+            Body = request_url(post, Url, Login, Password, nil),
             parse_status(Body);
         _ -> {error}
     end.
@@ -368,7 +368,7 @@ status_destroy(RootUrl, Consumer, Token, Secret, Args) ->
     case Args of
         [{"id", Id}] ->
             Url = UrlBase ++ Id ++ ".xml",
-            Body = oauth_request_url(get, Url, Consumer, Token, Secret, nil),
+            Body = oauth_request_url(post, Url, Consumer, Token, Secret, nil),
             parse_status(Body);
         _ -> {error}
     end.
